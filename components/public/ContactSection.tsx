@@ -1,9 +1,19 @@
 'use client'
 import { useState } from 'react'
-import { Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2, Phone, Calendar } from 'lucide-react'
 import { SITE, DISPONIBILIDAD } from '@/lib/static-data'
 
 type Estado = 'idle' | 'enviando' | 'ok' | 'error'
+
+// Fecha mínima: mañana
+function minDate() {
+  const d = new Date()
+  d.setDate(d.getDate() + 1)
+  return d.toISOString().split('T')[0]
+}
+
+const INPUT_CLASS =
+  'w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition'
 
 export default function ContactSection() {
   const [estado, setEstado] = useState<Estado>('idle')
@@ -14,10 +24,12 @@ export default function ContactSection() {
 
     const form = e.currentTarget
     const data = {
-      nombre: (form.elements.namedItem('nombre') as HTMLInputElement).value,
+      nombre:    (form.elements.namedItem('nombre')    as HTMLInputElement).value,
       apellidos: (form.elements.namedItem('apellidos') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      mensaje: (form.elements.namedItem('mensaje') as HTMLTextAreaElement).value,
+      telefono:  (form.elements.namedItem('telefono')  as HTMLInputElement).value,
+      email:     (form.elements.namedItem('email')     as HTMLInputElement).value,
+      fecha:     (form.elements.namedItem('fecha')     as HTMLInputElement).value,
+      mensaje:   (form.elements.namedItem('mensaje')   as HTMLTextAreaElement).value,
     }
 
     try {
@@ -26,7 +38,11 @@ export default function ContactSection() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           _subject: `Nueva consulta de ${data.nombre} ${data.apellidos}`,
-          ...data,
+          Nombre: `${data.nombre} ${data.apellidos}`,
+          Teléfono: data.telefono || '—',
+          Email: data.email,
+          'Fecha preferida': data.fecha || '—',
+          Mensaje: data.mensaje || '—',
         }),
       })
 
@@ -61,10 +77,7 @@ export default function ContactSection() {
                 <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4 text-teal-600" />
                 </div>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="text-sm text-teal-700 hover:text-teal-900 font-medium transition-colors break-all"
-                >
+                <a href={`mailto:${SITE.email}`} className="text-sm text-teal-700 hover:text-teal-900 font-medium transition-colors break-all">
                   {SITE.email}
                 </a>
               </li>
@@ -80,9 +93,7 @@ export default function ContactSection() {
                 </div>
                 <ul className="text-sm text-slate-600 space-y-0.5">
                   {DISPONIBILIDAD.map((d) => (
-                    <li key={d.dia}>
-                      <span className="font-medium">{d.dia}</span> · {d.hora}
-                    </li>
+                    <li key={d.dia}><span className="font-medium">{d.dia}</span> · {d.hora}</li>
                   ))}
                 </ul>
               </li>
@@ -111,52 +122,63 @@ export default function ContactSection() {
                 {estado === 'error' && (
                   <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-5 text-sm">
                     <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>No se pudo enviar el mensaje. Escríbeme directamente a <strong>{SITE.email}</strong></span>
+                    <span>No se pudo enviar. Escríbeme directamente a <strong>{SITE.email}</strong></span>
                   </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Nombre y apellidos */}
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Nombre</label>
-                      <input
-                        type="text"
-                        name="nombre"
-                        required
-                        placeholder="Tu nombre"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
-                      />
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Nombre *</label>
+                      <input type="text" name="nombre" required placeholder="Tu nombre" className={INPUT_CLASS} />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Apellidos</label>
-                      <input
-                        type="text"
-                        name="apellidos"
-                        required
-                        placeholder="Tus apellidos"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
-                      />
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Apellidos *</label>
+                      <input type="text" name="apellidos" required placeholder="Tus apellidos" className={INPUT_CLASS} />
                     </div>
                   </div>
 
+                  {/* Teléfono y email */}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                        <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" /> Teléfono</span>
+                      </label>
+                      <input
+                        type="tel"
+                        name="telefono"
+                        placeholder="600 000 000"
+                        className={INPUT_CLASS}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">Correo electrónico *</label>
+                      <input type="email" name="email" required placeholder="tu@correo.com" className={INPUT_CLASS} />
+                    </div>
+                  </div>
+
+                  {/* Fecha preferida */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">Correo electrónico</label>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" /> Fecha preferida</span>
+                    </label>
                     <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="tu@correo.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition"
+                      type="date"
+                      name="fecha"
+                      min={minDate()}
+                      className={INPUT_CLASS + ' cursor-pointer'}
                     />
                   </div>
 
+                  {/* Mensaje */}
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">Cuéntame tu caso</label>
                     <textarea
                       name="mensaje"
                       rows={4}
                       placeholder="Describe brevemente tu situación, qué te ocurre y desde cuándo…"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition resize-none"
+                      className={INPUT_CLASS + ' resize-none'}
                     />
                   </div>
 
@@ -166,17 +188,13 @@ export default function ContactSection() {
                     className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-700 hover:bg-teal-800 disabled:bg-teal-400 text-white font-semibold rounded-xl transition-colors"
                   >
                     {estado === 'enviando' ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Enviando…
-                      </>
+                      <><Loader2 className="w-4 h-4 animate-spin" />Enviando…</>
                     ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        Enviar consulta
-                      </>
+                      <><Send className="w-4 h-4" />Enviar consulta</>
                     )}
                   </button>
+
+                  <p className="text-xs text-slate-400 text-center">* Campos obligatorios</p>
                 </form>
               </>
             )}
