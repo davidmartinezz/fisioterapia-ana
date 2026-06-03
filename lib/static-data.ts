@@ -53,13 +53,13 @@ export const TECNICAS = [
     icono: 'Hand',
     titulo: 'Terapia Manual',
     descripcion:
-      'Movilizaciones articulares, manipulaciones y técnicas de tejido blando para restaurar el movimiento y reducir el dolor.',
+      'Movilizaciones articulares, manipulaciones, técnicas miofasciales y neurodinámicas para restaurar el movimiento óptimo y reducir el dolor.',
   },
   {
-    icono: 'Syringe',
+    icono: 'NeedleCustom',
     titulo: 'Punción Seca',
     descripcion:
-      'Técnica invasiva con aguja fina para el tratamiento de puntos gatillo miofasciales. Muy eficaz en el dolor muscular crónico.',
+      'Técnica invasiva con aguja de acupuntura estéril para el tratamiento de puntos gatillo miofasciales. Muy eficaz en la modulación del dolor.',
   },
   {
     icono: 'Dumbbell',
@@ -89,12 +89,12 @@ export const TECNICAS = [
 
 export const PATOLOGIAS = [
   {
-    icono: 'Stethoscope',
+    icono: 'NeckCustom',
     titulo: 'Cervicalgias',
     descripcion: 'Dolor cervical, contracturas y limitación de movimiento en la zona del cuello.',
   },
   {
-    icono: 'Shield',
+    icono: 'SpineCustom',
     titulo: 'Lumbalgias',
     descripcion: 'Dolor lumbar agudo y crónico, hernias discales y ciática.',
   },
@@ -104,7 +104,7 @@ export const PATOLOGIAS = [
     descripcion: 'Tendinitis y tendinosis de hombro, rodilla, codo y otras articulaciones.',
   },
   {
-    icono: 'MessageCircle',
+    icono: 'JawCustom',
     titulo: 'Patología de ATM · Bruxismo',
     descripcion:
       'Disfunción de la articulación temporomandibular, dolor de mandíbula y bruxismo.',
@@ -115,7 +115,7 @@ export const PATOLOGIAS = [
     descripcion: 'Dolor plantar, espolón calcáneo y alteraciones biomecánicas del pie.',
   },
   {
-    icono: 'AlertTriangle',
+    icono: 'AnkleCustom',
     titulo: 'Esguince de Tobillo',
     descripcion:
       'Tratamiento agudo y rehabilitación de esguinces con protocolo de vuelta a la actividad.',
@@ -192,33 +192,40 @@ export const TARIFAS = [
 ]
 
 export const DISPONIBILIDAD = [
-  { dia: 'Lunes', hora: '17:00 – 18:00' },
-  { dia: 'Martes', hora: '17:00' },
-  { dia: 'Miércoles', hora: '11:00 – 12:00' },
-  { dia: 'Jueves', hora: '11:00 – 12:00' },
-  { dia: 'Viernes', hora: '18:00 – 19:00' },
+  { dia: 'Lunes', horas: ['17:00', '18:00'] },
+  { dia: 'Martes', horas: ['17:00'] },
+  { dia: 'Miércoles', horas: ['11:00', '12:00'] },
+  { dia: 'Jueves', horas: ['11:00', '12:00'] },
+  { dia: 'Viernes', horas: ['18:00', '19:00'] },
 ]
 
 export const TESTIMONIOS = [
   {
     id: '1',
-    nombre_paciente: 'Paciente',
+    nombre_paciente: 'Mireya Roura',
     texto: 'Estoy muy satisfecha con el trabajo que ha realizado Ana conmigo. Fui con mucha rigidez, dolor lumbar y cervical y únicamente con dos sesiones mi dolencia ha mejorado muchísimo. Quiero destacar el excelente trato a nivel personal y profesional.',
     puntuacion: 5,
     fecha: 'Hace 4 meses',
   },
   {
     id: '2',
-    nombre_paciente: 'Paciente',
-    texto: 'Acudí por un dolor en el codo y antebrazo izquierdo que me limitaba bastante. Desde el primer día el trato ha sido excelente, cercano, profesional y muy humano. Ana supo identificar el problema para poder aplicarme el tratamiento más adecuado para mi dolencia. He mejorado muchísimo y el dolor ha disminuido bastante. Totalmente recomendable.',
+    nombre_paciente: 'Laura Casas',
+    texto: 'Acudí por un dolor en el codo y antebrazo izquierdo que me limitaba bastante. Desde el primer día el trato ha sido excelente, cercano, profesional y muy humano. Ana supo identificar el problema para poder aplicarme el tratamiento más adecuado para mi dolencia. He mejorado muchísimo y el dolor ha disminuido bastante. Totalmente recomendable',
     puntuacion: 5,
-    fecha: 'Hace 6 meses',
+    fecha: 'Hace 8 meses',
   },
   {
     id: '3',
-    nombre_paciente: 'Paciente',
-    texto: 'Acudí por dolor en el cuello y espalda desde hace meses y con la tercera sesión, que me pusieron punción seca, prácticamente ha desaparecido el dolor constante. El trato de Ana es muy profesional y cercano.',
+    nombre_paciente: 'Ángeles Rodríguez',
+    texto: 'Acudí por dolor en el cuello y espalda desde hace meses y con la tercera sesión, que me puso punción seca, prácticamente ha desaparecido el dolor constante. El trato de Ana es muy profesional y cercano.',
     puntuacion: 5,
     fecha: 'Hace 2 semanas',
+  },
+  {
+    id: '4',
+    nombre_paciente: 'Estíbaliz Ruiz',
+    texto: 'Llegué con una lesión con bastante dolor en la espalda y con las sesiones programadas con Ana he notado muchísima mejoría ya desde la primera sesión. De hecho ya después de la tercera sesión no tengo ningún síntoma ni dolor. Lo recomiendo sin duda, porque además el trato y la confianza es impecable. Muchísimas gracias por todo, Ana! Nos vemos después del verano!',
+    puntuacion: 5,
+    fecha: 'Hace 10 meses',
   },
 ]

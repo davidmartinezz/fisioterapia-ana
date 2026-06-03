@@ -1,15 +1,75 @@
 import {
-  Hand, Syringe, Dumbbell, Droplets, Activity, Heart,
-  Stethoscope, Shield, Zap, MessageCircle, Footprints,
-  AlertTriangle, HeartPulse, Layers, Brain,
+  Hand, Dumbbell, Droplets, Activity, Heart,
+  Zap, Footprints,
+  HeartPulse, Layers, Brain,
   LucideIcon,
 } from 'lucide-react'
 import { TECNICAS, PATOLOGIAS } from '@/lib/static-data'
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Hand, Syringe, Dumbbell, Droplets, Activity, Heart,
-  Stethoscope, Shield, Zap, MessageCircle, Footprints,
-  AlertTriangle, HeartPulse, Layers, Brain,
+function NeedleCustom({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="10" y="2" width="4" height="5" rx="2"/>
+      <line x1="12" y1="7" x2="12" y2="21"/>
+      <line x1="11" y1="21" x2="13" y2="21" strokeWidth="1"/>
+    </svg>
+  )
+}
+
+function NeckCustom({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 22 L9 16 Q9 10 12 8 Q15 10 15 16 L15 22"/>
+      <rect x="8" y="10" width="8" height="2.5" rx="1.2"/>
+      <rect x="8" y="14.5" width="8" height="2.5" rx="1.2"/>
+    </svg>
+  )
+}
+
+function SpineCustom({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="8" y="2" width="8" height="3.5" rx="1.2"/>
+      <rect x="8" y="8" width="8" height="3.5" rx="1.2"/>
+      <rect x="8" y="14" width="8" height="3.5" rx="1.2"/>
+      <rect x="8" y="20" width="8" height="2" rx="1"/>
+      <line x1="12" y1="5.5" x2="12" y2="8"/>
+      <line x1="12" y1="11.5" x2="12" y2="14"/>
+      <line x1="12" y1="17.5" x2="12" y2="20"/>
+    </svg>
+  )
+}
+
+function JawCustom({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 8 Q4 19 12 19 Q20 19 20 8"/>
+      <path d="M4 8 Q4 3 7.5 3 L16.5 3 Q20 3 20 8"/>
+      <line x1="9" y1="14" x2="9" y2="19"/>
+      <line x1="12" y1="15" x2="12" y2="19"/>
+      <line x1="15" y1="14" x2="15" y2="19"/>
+    </svg>
+  )
+}
+
+function AnkleCustom({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 2 L10 10 Q10 15 7 17 L5 21 L19 21"/>
+      <path d="M14 2 L14 10"/>
+      <line x1="10" y1="7" x2="14" y2="7"/>
+      <circle cx="9" cy="13" r="2"/>
+      <circle cx="15" cy="13" r="2"/>
+    </svg>
+  )
+}
+
+type CustomIcon = ({ className }: { className?: string }) => JSX.Element
+
+const ICON_MAP: Record<string, LucideIcon | CustomIcon> = {
+  Hand, Dumbbell, Droplets, Activity, Heart,
+  Zap, Footprints, HeartPulse, Layers, Brain,
+  NeedleCustom, NeckCustom, SpineCustom, JawCustom, AnkleCustom,
 }
 
 function TechCard({ icono, titulo, descripcion }: { icono: string; titulo: string; descripcion: string }) {

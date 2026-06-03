@@ -68,11 +68,14 @@ export default function PricingSection() {
               {DISPONIBILIDAD.map((d) => (
                 <li
                   key={d.dia}
-                  className="flex items-center justify-between bg-slate-50 rounded-xl px-4 py-3"
+                  className="flex items-center gap-3 bg-slate-50 rounded-xl px-4 py-3"
                 >
-                  <span className="font-semibold text-slate-700 text-sm w-28">{d.dia}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400 opacity-60" />
-                  <span className="text-teal-700 font-medium text-sm">{d.hora}</span>
+                  <span className="font-semibold text-slate-700 text-sm w-28 shrink-0">{d.dia}</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {d.horas.map((h) => (
+                      <span key={h} className="text-teal-700 font-medium text-sm bg-teal-50 border border-teal-100 px-2 py-0.5 rounded-full">{h}</span>
+                    ))}
+                  </div>
                 </li>
               ))}
             </ul>

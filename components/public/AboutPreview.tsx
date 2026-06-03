@@ -29,7 +29,7 @@ export default function AboutPreview() {
           <div>
             <span className="text-xs font-semibold tracking-widest text-teal-600 uppercase">Sobre mí</span>
             <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mt-2 mb-4">
-              Fisioterapia con vocación<br className="hidden md:block" /> y rigor científico
+              Fisioterapia con vocación<br className="hidden md:block" /> y criterio profesional
             </h2>
             <div className="w-10 h-1 bg-teal-500 rounded-full mb-6" />
 

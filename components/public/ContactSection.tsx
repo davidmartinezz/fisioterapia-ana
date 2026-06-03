@@ -91,9 +91,18 @@ export default function ContactSection() {
                 <div className="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center shrink-0">
                   <Clock className="w-4 h-4 text-teal-600" />
                 </div>
-                <ul className="text-sm text-slate-600 space-y-0.5">
+                <ul className="text-sm text-slate-600 space-y-2">
                   {DISPONIBILIDAD.map((d) => (
-                    <li key={d.dia}><span className="font-medium">{d.dia}</span> · {d.hora}</li>
+                    <li key={d.dia} className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span className="font-medium w-20 shrink-0">{d.dia}</span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {d.horas.map((h) => (
+                          <span key={h} className="bg-teal-50 text-teal-700 text-xs px-2 py-0.5 rounded-full font-medium border border-teal-100">
+                            {h}
+                          </span>
+                        ))}
+                      </div>
+                    </li>
                   ))}
                 </ul>
               </li>

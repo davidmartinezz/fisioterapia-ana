@@ -40,7 +40,7 @@ export default function Footer({ nombre }: FooterProps) {
             <p className="text-white font-semibold text-sm mb-2">Horario</p>
             <ul className="space-y-1 text-sm text-slate-400">
               {DISPONIBILIDAD.map((d) => (
-                <li key={d.dia}><span className="text-slate-300">{d.dia}</span> · {d.hora}</li>
+                <li key={d.dia}><span className="text-slate-300">{d.dia}</span> · {d.horas.join(' / ')}</li>
               ))}
             </ul>
           </div>
