@@ -1,6 +1,6 @@
 import {
   Hand, Dumbbell, Droplets, Activity, Heart,
-  Zap, Footprints,
+  Zap, Footprints, AlertTriangle,
   HeartPulse, Layers, Brain,
   LucideIcon,
 } from 'lucide-react'
@@ -19,9 +19,12 @@ function NeedleCustom({ className }: { className?: string }) {
 function NeckCustom({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 22 L9 16 Q9 10 12 8 Q15 10 15 16 L15 22"/>
-      <rect x="8" y="10" width="8" height="2.5" rx="1.2"/>
-      <rect x="8" y="14.5" width="8" height="2.5" rx="1.2"/>
+      {/* Head */}
+      <circle cx="12" cy="5" r="3.5"/>
+      {/* Neck */}
+      <path d="M10 8.5 L9.5 16 L14.5 16 L14 8.5"/>
+      {/* Shoulders */}
+      <path d="M5 20 Q7 16 9.5 16 L14.5 16 Q17 16 19 20"/>
     </svg>
   )
 }
@@ -43,23 +46,15 @@ function SpineCustom({ className }: { className?: string }) {
 function JawCustom({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 8 Q4 19 12 19 Q20 19 20 8"/>
-      <path d="M4 8 Q4 3 7.5 3 L16.5 3 Q20 3 20 8"/>
-      <line x1="9" y1="14" x2="9" y2="19"/>
-      <line x1="12" y1="15" x2="12" y2="19"/>
-      <line x1="15" y1="14" x2="15" y2="19"/>
-    </svg>
-  )
-}
-
-function AnkleCustom({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 2 L10 10 Q10 15 7 17 L5 21 L19 21"/>
-      <path d="M14 2 L14 10"/>
-      <line x1="10" y1="7" x2="14" y2="7"/>
-      <circle cx="9" cy="13" r="2"/>
-      <circle cx="15" cy="13" r="2"/>
+      {/* Mandible bone - U shape with condyles */}
+      <path d="M5 4 L5 15 Q5 21 12 21 Q19 21 19 15 L19 4"/>
+      {/* Condyles (joint points at top) */}
+      <circle cx="5" cy="4" r="2" fill="currentColor" stroke="none"/>
+      <circle cx="19" cy="4" r="2" fill="currentColor" stroke="none"/>
+      {/* Teeth dividers */}
+      <line x1="8.5" y1="15" x2="8.5" y2="21"/>
+      <line x1="12" y1="16" x2="12" y2="21"/>
+      <line x1="15.5" y1="15" x2="15.5" y2="21"/>
     </svg>
   )
 }
@@ -68,8 +63,8 @@ type CustomIcon = ({ className }: { className?: string }) => JSX.Element
 
 const ICON_MAP: Record<string, LucideIcon | CustomIcon> = {
   Hand, Dumbbell, Droplets, Activity, Heart,
-  Zap, Footprints, HeartPulse, Layers, Brain,
-  NeedleCustom, NeckCustom, SpineCustom, JawCustom, AnkleCustom,
+  Zap, Footprints, AlertTriangle, HeartPulse, Layers, Brain,
+  NeedleCustom, NeckCustom, SpineCustom, JawCustom,
 }
 
 function TechCard({ icono, titulo, descripcion }: { icono: string; titulo: string; descripcion: string }) {

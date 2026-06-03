@@ -115,10 +115,10 @@ export const PATOLOGIAS = [
     descripcion: 'Dolor plantar, espolón calcáneo y alteraciones biomecánicas del pie.',
   },
   {
-    icono: 'AnkleCustom',
+    icono: 'AlertTriangle',
     titulo: 'Esguince de Tobillo',
     descripcion:
-      'Tratamiento agudo y rehabilitación de esguinces con protocolo de vuelta a la actividad.',
+      'Tratamiento en fases agudas y crónicas con protocolo de vuelta a la actividad.',
   },
   {
     icono: 'HeartPulse',
