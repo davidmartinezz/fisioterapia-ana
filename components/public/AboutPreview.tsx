@@ -12,7 +12,7 @@ export default function AboutPreview() {
           <div className="relative hidden md:block">
             <div className="aspect-[3/4] rounded-3xl overflow-hidden shadow-xl border border-teal-100">
               <Image
-                src="/ana.png"
+                src="/ana_red.png"
                 alt={`Foto de ${SITE.nombre}`}
                 width={480}
                 height={640}
